@@ -235,7 +235,7 @@ def problem0b(n):
 
     count = 0
     for k in range(n - 1):
-        if is_prime(k + 2) == True:
+        if is_prime(k + 2) is True:
             count += 1
 
     return count
@@ -309,10 +309,12 @@ def problem0c(circle, n, window):
 
     for k in range(n):
         circle.attach_to(window)
-        circle = rg.Circle(rg.Point(circle.center.x + ( 2 * circle.radius), circle.center.y), circle.radius)
+        circle = rg.Circle(rg.Point(circle.center.x + (2 * circle.radius), circle.center.y), circle.radius)
         window.render(0.5)
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
+
+
 main()
