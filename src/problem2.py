@@ -30,7 +30,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_problem2a()
+    # run_test_problem2a()
     run_test_problem2b()
 
 
@@ -102,7 +102,7 @@ def problem2a(circle, rectangle, window):
       :type window:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -144,11 +144,13 @@ def run_test_problem2b():
     rectangle = rg.Rectangle(rg.Point(100, 100), rg.Point(140, 120))
     rectangle.fill_color = 'blue'
     problem2b(rectangle, 6, 15, window)
+    delta = 15
     window.continue_on_mouse_click()
 
     rectangle = rg.Rectangle(rg.Point(400, 300), rg.Point(350, 200))
     rectangle.fill_color = 'green'
     problem2b(rectangle, 3, 50, window)
+    delta = 50
     window.close_on_mouse_click()
 
     title = 'Test 3 of problem2b: 10 on red with delta=12'
@@ -157,6 +159,7 @@ def run_test_problem2b():
     rectangle = rg.Rectangle(rg.Point(250, 150), rg.Point(200, 200))
     rectangle.fill_color = 'red'
     problem2b(rectangle, 10, 12, window)
+    delta = 12
     window.close_on_mouse_click()
 
 
@@ -190,7 +193,7 @@ def problem2b(rect, n, delta, win):
       :type win:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -199,8 +202,21 @@ def problem2b(rect, n, delta, win):
     #    TIME ESTIMATE:   15 to 25 minutes.
     # ------------------------------------------------------------------
 
+    rect.attach_to(win)
+    rectangle_upper_left = rect.get_upper_left_corner()
+    rectangle_lower_right = rect.get_lower_right_corner()
+    for k in range(n):
+        rectangle = rg.Rectangle(rectangle_upper_left, rectangle_lower_right)
+        rectangle_upper_left = rg.Point(rectangle_upper_left.x - delta, rectangle_upper_left.y - delta)
+        rectangle_lower_right = rg.Point(rectangle_lower_right.x + delta, rectangle_lower_right.y + delta)
+
+        rectangle.attach_to(win)
+
+    win.render()
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
+
+
 main()
